@@ -1,0 +1,23 @@
+---
+title: eth_chainId
+description: 获取BUZZUP当前的chainId
+---
+
+---
+### 参数
+- 该方法不接受任何参数
+---
+
+### 返回值
+
+- <div>ChainId<span style={{marginLeft:10,color:'#707070'}}>hex encoded bytes</span></div>
+---
+
+### Request
+
+```js
+async function getAccounts() {
+    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    console.log(chainId);
+}
+```

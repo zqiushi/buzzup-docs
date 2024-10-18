@@ -1,0 +1,11 @@
+---
+title: accountsChanged
+description: 监听BUZZUP账号切换
+---
+
+
+```js
+window.ethereum.on('accountsChanged', (e) => {
+  console.log('address',e)
+});
+```

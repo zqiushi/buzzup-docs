@@ -1,0 +1,63 @@
+---
+title: 认证
+description: 了解 WealthMentor 如何在不同的开发模式和不同的提供者中处理认证。
+icon: "lock"
+---
+
+# 开发模式下的认证
+
+在开发模式下，您的应用程序使用简化版的认证以便于测试和调试。这通常不安全，不应在生产环境中使用。
+
+在您的 `.env` 文件中，您可以使用 `NODE_ENV` 变量在开发环境和生产环境之间进行切换。当设置为 "development" 时，应用程序会在开发模式下运行。
+
+要使应用程序使用不安全的简化版认证，请将您的 `.env` 文件中的 `NEXTAUTH_SECRET` 变量设置为一个简单的、不安全的值（例如 "changeme"）。
+
+## 访问提供者密钥
+
+要启用不同类型的 OAuth 认证，您需要从各自的提供者那里获取密钥。以下是获取这些密钥的一般说明：
+
+<Tabs>
+  <Tab title="Google">
+
+在 Google Cloud Console 中创建一个项目。  
+转到 "凭据"，点击 "创建凭据"，然后选择 "OAuth 客户端 ID"。  
+配置您的 OAuth 同意屏幕和应用程序类型，然后点击 "创建"。  
+您的客户端 ID 和密钥将显示出来。  
+有关更详细的说明，请访问 Google 的官方 [OAuth 2.0 设置指南](https://developers.google.com/identity/protocols/oauth2)。
+
+  </Tab>
+
+  <Tab title="GitHub">
+
+转到您的 GitHub 设置。  
+点击 "开发人员设置"。  
+点击 "OAuth 应用程序"，然后点击 "New OAuth App"。  
+填写所需信息，然后点击 "注册应用程序"。  
+客户端 ID 和密钥将显示在下一页上。  
+您可以在 [GitHub OAuth 文档](https://docs.github.com/en/developers/apps/building-oauth-apps) 中找到更详细的说明。
+
+  </Tab>
+
+  <Tab title="Discord">
+
+转到 Discord 开发者门户。  
+点击 "New Application"。  
+给您的应用程序命名，然后点击 "创建"。  
+转到您的应用程序设置中的 "OAuth2" 页面。  
+在 "重定向" 下，添加您的重定向 URI。  
+点击 "保存更改"。  
+客户端 ID 可以在 "General Information" 页面找到，密钥可以在 "OAuth2" 页面找到。  
+有关更详细的说明，请访问 [Discord OAuth2 文档](https://discord.com/developers/docs/topics/oauth2)。
+
+  </Tab>
+</Tabs>
+
+## 启用非本地认证
+
+`.env` 文件包含几个提供者客户端 ID 和密钥的占位符。请使用从各自提供者那里获取的密钥替换这些占位符：
+
+- 对于 Google，将 `GOOGLE_CLIENT_ID` 和 `GOOGLE_CLIENT_SECRET` 的 "\*\*\*" 占位符替换为从 Google 获取的客户端 ID 和密钥。
+- 对于 GitHub，将 `GITHUB_CLIENT_ID` 和 `GITHUB_CLIENT_SECRET` 的 "\*\*\*" 占位符替换为从 GitHub 获取的客户端 ID 和密钥。
+- 对于 Discord，将 `DISCORD_CLIENT_ID` 和 `DISCORD_CLIENT_SECRET` 的 "\*\*\*" 占位符替换为从 Discord 获取的客户端 ID 和密钥。
+
+一旦进行了这些更改，您的应用程序将设置为使用这些提供者的 OAuth 认证。要从本地认证切换到 OAuth 认证，请将您的 `.env` 文件中的 `NEXTAUTH_URL` 变量更改为您的应用程序托管的 URL。这不能是 localhost。

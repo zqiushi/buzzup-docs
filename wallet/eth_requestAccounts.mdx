@@ -1,0 +1,31 @@
+---
+title: eth_requestAccounts
+description: 连接钱包
+---
+
+---
+### 参数
+- 该方法不接受任何参数
+---
+
+### 返回值
+
+- <div>AddressList<span style={{marginLeft:10,color:'#707070'}}>array</span></div>
+---
+
+### Request
+
+```js
+  async function connectWallet() {
+    if (window.ethereum) {
+        try {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            console.log('钱包连接成功',accounts);
+        } catch (error) {
+            console.error('用户拒绝了连接请求', error);
+        }
+    } else {
+        console.error('请安装 MetaMask 钱包');
+    }
+}
+```

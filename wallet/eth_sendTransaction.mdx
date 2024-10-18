@@ -1,0 +1,41 @@
+---
+title: eth_sendTransaction
+description: 创建新的钱包确认，以便从用户帐户进行以太坊交易。此方法要求用户首先授予与其帐户交互的权限，因此请确保先调用eth_requestAccounts
+---
+
+---
+### 参数
+- from:  发送交易的地址。
+- to: -（创建新合约时可选）将交易定向到的地址。
+- value: 表示与此交易一起发送的值的整数。
+- data: 合约的编译代码或调用的方法签名和编码参数的哈希。
+- gas: (可选) 表示为交易执行提供的燃料的整数。 它将返回未使用的燃料。
+
+---
+### 返回值
+- 已发送交易的交易哈希。
+- TransactionHash 字符串
+- 32 hex encoded bytes
+---
+
+### Request
+
+```js
+  const eth_sendTransaction = () => {
+    try {
+      const hash = await window.ethereum.request({
+        "method": "eth_sendTransaction",
+        "params": [{
+          to: "0x4B0897b0513FdBeEc7C469D9aF4fA6C0752aBea7",
+          from: "0xDeaDbeefdEAdbeefdEadbEEFdeadbeefDEADbEEF",
+          gas: "0x76c0",
+          value: "0x8ac7230489e80000",
+          data: "0x",
+          gasPrice: "0x4a817c800"
+        }],
+      });
+    } catch (error) {
+      console.log('发送交易失败：',error);
+    }
+  }
+```

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "BUZZUP",
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#808080",
+    "light": "#FFFFFF",
+    "dark": "#000000",
+    "background": {
+      "dark": "#000000",
+      "light": "#FFFFFF"
+    }
+  },
+  "search": {},
+  "navigation": [
+    {
+      "group": "了解",
+      "pages": [
+        "introduction"
+      ]
+    },
+    {
+      "group": "JSON-RPC API",
+      "pages": [
+        "wallet/eth_requestAccounts",
+        "wallet/eth_accounts",
+        "wallet/eth_chainId",
+        "wallet/personal_sign",
+        "wallet/eth_signTypedData_v4",
+        "wallet/eth_sendTransaction"
+      ]
+    },
+    {
+      "group": "event",
+      "pages": [
+        "event/chainChanged",
+        "event/accountsChanged"
+      ]
+    }
+  ],
+  "backgroundImage": "/background.png"
+}

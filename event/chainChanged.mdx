@@ -1,0 +1,11 @@
+---
+title: chainChanged
+description: 监听BUZZUP网络切换
+---
+
+
+```js
+window.ethereum.on('chainChanged', (e) => {
+  console.log('chainId',e)
+});
+```

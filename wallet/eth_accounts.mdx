@@ -1,0 +1,23 @@
+---
+title: eth_accounts
+description: 返回BUZZUP拥有的地址列表
+---
+
+---
+### 参数
+- 该方法不接受任何参数
+---
+
+### 返回值
+
+- <div>AddressList<span style={{marginLeft:10,color:'#707070'}}>array</span></div>
+---
+
+### Request
+
+```js
+async function getAccounts() {
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    console.log('当前账户:', accounts[0]);
+}
+```

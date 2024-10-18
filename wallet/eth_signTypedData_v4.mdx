@@ -1,0 +1,71 @@
+---
+title: eth_signTypedData_v4
+description: eth_signTypedData_v4 是以太坊 JSON-RPC API 的一个方法，用于执行 EIP-712 的签名。这个方法允许 dApp 安全地请求用户对一个结构化数据的签名，以确保用户确认该数据的内容。
+---
+
+---
+### 参数 TypedData
+- <div>domain <span style={{color:'#707070',fontSize:14}}>object</span></div>
+- <div>message <span style={{color:'#707070',fontSize:14}}>object</span></div>
+- <div>primaryType <span style={{color:'#707070',fontSize:14}}>string</span></div>
+- <div>types <span style={{color:'#707070',fontSize:14}}>string</span></div>
+
+---
+
+### 返回值 
+- Signature string
+- hex encoded bytes
+
+### Request
+```javascript
+const signTypedData = async () => {
+  const address = "0xYourEthereumAddress";
+   const msgParams = {
+      domain: {
+        chainId: 97, // Binance Smart Chain 测试网
+        name: "Ether Mail",
+        verifyingContract: "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+        version: "1", // 版本应为字符串
+      },
+      message: {
+        from: {
+          name: 'Alice',
+          wallet: "0x58F401144bbd45031b9937Ec93A8b2aac8bB8972" // 确保地址为小写
+        },
+        to: {
+          name: 'Bob',
+          wallet: '0x58F401144bbd45031b9937Ec93A8b2aac8bB8972' // 确保地址为小写
+        },
+        contents: 'Hello, Bob!'
+      },
+      primaryType: "Mail",
+      types: {
+        EIP712Domain: [
+          { name: 'name', type: 'string' },
+          { name: 'version', type: 'string' },
+          { name: 'chainId', type: 'uint256' },
+          { name: 'verifyingContract', type: 'address' }
+        ],
+        Person: [
+          { name: 'name', type: 'string' },
+          { name: 'wallet', type: 'address' }
+        ],
+        Mail: [
+          { name: 'from', type: 'Person' },
+          { name: 'to', type: 'Person' },
+          { name: 'contents', type: 'string' }
+        ]
+      },
+    };
+
+  try {
+    const signature = await window.ethereum.request({
+    method: "eth_signTypedData_v4",
+    params: [address, JSON.stringify(msgParams)],
+  });
+
+    console.log("签名结果:", signature);
+  } catch (error) {
+    console.log("签名失败:", error);
+  }
+};

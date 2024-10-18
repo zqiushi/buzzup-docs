@@ -1,0 +1,29 @@
+---
+title: personal_sign
+description: 连接钱包并且签名，personal_sign- 使用此方法可以最轻松地请求不需要在链上有效处理的人性化签名。此方法要求用户首先授予与其帐户交互的权限，因此请确保先调用eth_requestAccounts
+---
+
+---
+### 参数
+- message: (必填) 签名数据
+- address: (必填) 地址
+---
+
+### 返回值
+
+- <div>Signature<span style={{marginLeft:10,color:'#707070'}}>hex encoded bytes</span></div>
+---
+
+```js
+async function personal_sign() {
+    try {
+      const signature = await window.ethereum.request({
+        method: 'personal_sign',
+        params: [message, address],
+      });
+      console.log('签名结果:', signature);
+    } catch (error) {
+      console.log('签名失败:', signature);
+    }
+}
+```

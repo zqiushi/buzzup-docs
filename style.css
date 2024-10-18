@@ -1,0 +1,13 @@
+footer .sm\:flex>a{
+  background: red;
+  display:none;
+  opacity: 0;
+}
+
+#search-bar-entry{
+  display:none;
+}
+
+pre{
+  width: 100%;
+}
